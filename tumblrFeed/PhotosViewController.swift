@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import Alamofire
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
 
+    var posts: [[String: Any]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.dataSource = self
+        
         // Do any additional setup after loading the view.
         fetchTumblr()
     }
@@ -40,8 +48,8 @@ class PhotosViewController: UIViewController {
                 // receives data from url and we make it a json object
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let responseD = dataDictionary["response"] as! [String: Any]
-                let posts = responseD["posts"] as! [[String: Any]]
-                let photos = posts[0]["photos"] as! [[String: Any]]
+                self.posts = responseD["posts"] as! [[String: Any]]
+                let photos = self.posts[0]["photos"] as! [[String: Any]]
                 let photoObj = photos[0]["original_size"] as! [String: Any]
                 let photoURL = photoObj["url"] as! String
                 
@@ -57,6 +65,16 @@ class PhotosViewController: UIViewController {
         }
         // Start the task to get the info!
         task.resume()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath)
+        
+        return cell
     }
 
 }
