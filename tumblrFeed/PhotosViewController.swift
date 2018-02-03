@@ -38,13 +38,16 @@ class PhotosViewController: UIViewController {
                 print(error.localizedDescription)
             } else if let data = data {
                 // receives data from url and we make it a json object
-                
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let responseD = dataDictionary["response"] as! [String: Any]
-                let posts = dataDictionary["posts"] as! [[String: Any]]
+                let posts = responseD["posts"] as! [[String: Any]]
+                let photos = posts[0]["photos"] as! [[String: Any]]
+                let photoObj = photos[0]["original_size"] as! [String: Any]
+                let photoURL = photoObj["url"] as! String
                 
                 
-                print(posts)
+                print(photoURL)
+                
                 // Now we extract the movies from the json object
                 //self.movies = dataDictionary["results"] as! [[String: Any]]
                 // table view is set up faster than request gets returned, so let's reload!
