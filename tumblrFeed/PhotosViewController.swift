@@ -14,6 +14,7 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        fetchTumblr()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +22,38 @@ class PhotosViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func fetchTumblr() {
+        // Start dat circle YEET
+        //activityIndicator.startAnimating()
+        
+        let url = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")!
+        
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            // this will run when the network request returns
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let data = data {
+                // receives data from url and we make it a json object
+                
+                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                let responseD = dataDictionary["response"] as! [String: Any]
+                let posts = dataDictionary["posts"] as! [[String: Any]]
+                
+                
+                print(posts)
+                // Now we extract the movies from the json object
+                //self.movies = dataDictionary["results"] as! [[String: Any]]
+                // table view is set up faster than request gets returned, so let's reload!
+                //self.tableView.reloadData()
+                //self.refreshControl.endRefreshing()
+            }
+        }
+        // Start the task to get the info!
+        task.resume()
     }
-    */
 
 }
