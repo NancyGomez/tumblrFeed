@@ -13,18 +13,13 @@ class PhotosViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-
     var posts: [[String: Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         // We will provide the data for the table view
-//        tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
-        
-        
         
         // Do any additional setup after loading the view.
         fetchTumblr()
@@ -36,8 +31,6 @@ class PhotosViewController: UIViewController, UITableViewDataSource {
     }
     
     func fetchTumblr() {
-        // Start dat circle YEET
-        //activityIndicator.startAnimating()
         
         let url = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")!
         
@@ -50,19 +43,13 @@ class PhotosViewController: UIViewController, UITableViewDataSource {
             if let error = error {
                 print(error.localizedDescription)
             } else if let data = data {
-                // receives data from url and we make it a json object
+                // receives data from url and we make it a json object and unwrap it
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let responseD = dataDictionary["response"] as! [String: Any]
                 self.posts = responseD["posts"] as! [[String: Any]]
                 
-                
-//                print(photoURL)
-                
-                // Now we extract the movies from the json object
-                //self.movies = dataDictionary["results"] as! [[String: Any]]
-                // table view is set up faster than request gets returned, so let's reload!
+                // add info to the table!
                 self.tableView.reloadData()
-                //self.refreshControl.endRefreshing()
             }
         }
         // Start the task to get the info!
@@ -76,16 +63,18 @@ class PhotosViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         
+        // Lots of UNWRAPPING
         let photos = self.posts[indexPath.row]["photos"] as! [[String: Any]]
+        
         let photoObj = photos[0]["original_size"] as! [String: Any]
+        
         let photoLink = photoObj["url"] as! String
         
-        print(photoLink)
         let photoURL = URL(string: photoLink)!
         
+        // adding image to the cell
         cell.blogPhoto.af_setImage(withURL: photoURL)
-        
-        
+
         return cell
     }
 
