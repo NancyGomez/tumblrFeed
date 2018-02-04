@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Alamofire
+import AlamofireImage
 
 class PhotosViewController: UIViewController, UITableViewDataSource {
     
@@ -19,7 +19,12 @@ class PhotosViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        // We will provide the data for the table view
+//        tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
+        
+        
         
         // Do any additional setup after loading the view.
         fetchTumblr()
@@ -49,17 +54,14 @@ class PhotosViewController: UIViewController, UITableViewDataSource {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let responseD = dataDictionary["response"] as! [String: Any]
                 self.posts = responseD["posts"] as! [[String: Any]]
-                let photos = self.posts[0]["photos"] as! [[String: Any]]
-                let photoObj = photos[0]["original_size"] as! [String: Any]
-                let photoURL = photoObj["url"] as! String
                 
                 
-                print(photoURL)
+//                print(photoURL)
                 
                 // Now we extract the movies from the json object
                 //self.movies = dataDictionary["results"] as! [[String: Any]]
                 // table view is set up faster than request gets returned, so let's reload!
-                //self.tableView.reloadData()
+                self.tableView.reloadData()
                 //self.refreshControl.endRefreshing()
             }
         }
@@ -68,11 +70,21 @@ class PhotosViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return posts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        
+        let photos = self.posts[indexPath.row]["photos"] as! [[String: Any]]
+        let photoObj = photos[0]["original_size"] as! [String: Any]
+        let photoLink = photoObj["url"] as! String
+        
+        print(photoLink)
+        let photoURL = URL(string: photoLink)!
+        
+        cell.blogPhoto.af_setImage(withURL: photoURL)
+        
         
         return cell
     }
