@@ -30,7 +30,8 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.gyazo.com/d1d93e0012767b9989afee95ff54f357.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![alt text](https://i.gyazo.com/d1d93e0012767b9989afee95ff54f357.gif)
+
 
 GIF created with [GyazoGIF](https://gyazo.en.softonic.com/).
 
@@ -39,7 +40,7 @@ Unwrapping JSON was definitely the hardest simply because we had to cast it to a
 
 ## License
 
-    Copyright [2018] [Nancy]
+    Copyright [2018] [Nancy and Carlos]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
