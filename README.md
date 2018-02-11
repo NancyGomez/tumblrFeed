@@ -55,11 +55,11 @@ Unwrapping JSON was definitely the hardest simply because we had to cast it to a
     limitations under the License.
     
     
-    # Lab 2 - *Name of App Here*
+    # Lab 2 - TumblerFeed
     
-    **Name of your app** is a photo browsing app app using the [The Tumblr API](https://www.tumblr.com/docs/en/api/v2#posts).
+    TumblerFeed is a photo browsing app app using the [The Tumblr API](https://www.tumblr.com/docs/en/api/v2#posts).
     
-    Time spent: **X** hours spent in total
+    Time spent: **1** hours spent in total
     
     ## User Stories
     
