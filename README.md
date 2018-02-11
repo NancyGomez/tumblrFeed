@@ -65,7 +65,7 @@ Unwrapping JSON was definitely the hardest simply because we had to cast it to a
     
     The following **required** user stories are complete:
     
-    - [ ] User can tab an image to view a larger image in a detail view (5pts)
+    - [x] User can tab an image to view a larger image in a detail view (5pts)
     
     The following **stretch** user stories are implemented:
     
@@ -79,15 +79,15 @@ Unwrapping JSON was definitely the hardest simply because we had to cast it to a
     
     Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
     
-    1.
-    2.
+    1. User details.
+    2. Image details. 
     
     ## Video Walkthrough
     
     Here's a walkthrough of implemented user stories:
     
-    <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-    
+
+    <a href="https://imgur.com/OlWp11M"><img src="https://i.imgur.com/OlWp11M.gif" title="source: imgur.com" /></a>    
     GIF created with [LiceCap](http://www.cockos.com/licecap/).
     
     ## Notes
@@ -96,7 +96,7 @@ Unwrapping JSON was definitely the hardest simply because we had to cast it to a
     
     ## License
     
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2018] [Carlos]
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
