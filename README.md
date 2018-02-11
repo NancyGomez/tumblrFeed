@@ -87,8 +87,7 @@ Unwrapping JSON was definitely the hardest simply because we had to cast it to a
     Here's a walkthrough of implemented user stories:
     
 
-    <a href="https://imgur.com/OlWp11M"><img src="https://i.imgur.com/OlWp11M.gif" title="source: imgur.com" /></a>    
-    GIF created with [LiceCap](http://www.cockos.com/licecap/).
+<a href="https://imgur.com/OlWp11M"><img src="https://i.imgur.com/OlWp11M.gif" title="source: imgur.com" /></a>    GIF created with [LiceCap](http://www.cockos.com/licecap/).
     
     ## Notes
     
