@@ -2,7 +2,7 @@
 
 **tumblrFeed** is a photo browsing app using the [The Tumblr API](https://www.tumblr.com/docs/en/api/v2#posts).
 
-Time spent: **5** hours spent in total
+Time spent: **5** hours spent in totals
 
 ## User Stories
 
